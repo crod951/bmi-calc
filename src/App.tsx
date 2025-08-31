@@ -71,16 +71,16 @@ const App = () => {
       <header className="pt-8 pb-6 relative">
         <div className="container mx-auto px-4">
           {/* Theme Toggle - Top Right */}
-          <div className="absolute top-8 right-4 md:right-8">
+          <div className="absolute top-12 right-4 md:right-8 z-10">
             <ModeToggle />
           </div>
 
           <div className="text-center mb-8">
-            <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="flex items-center justify-center gap-3 mb-6 flex-col sm:flex-row">
               <div className="p-3 bg-gradient-to-br from-teal-200 to-sky-700 rounded-2xl shadow-lg ring-1 ring-blue-500/20">
                 <Calculator className="h-8 w-8 text-white" />
               </div>
-              <h1 className={`text-4xl font-bold transition-colors duration-200 ${
+              <h1 className={`text-3xl sm:text-4xl font-bold transition-colors duration-200 ${
                 theme === 'dark' ? 'text-sky-400' : 'text-sky-600'
               }`}>
                 Health Calculator
