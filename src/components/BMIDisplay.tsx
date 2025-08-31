@@ -4,21 +4,23 @@ import { Badge } from '@/components/ui/badge';
 import { Label } from '@/components/ui/label';
 import { Activity, TrendingUp, TrendingDown, Minus } from 'lucide-react';
 import { getBMICategory } from '@/utils/conversions';
+import { useTheme } from '@/hooks/use-theme';
 
 interface BMIDisplayProps {
   bmi: number | null;
 }
 
 const BMIDisplay: React.FC<BMIDisplayProps> = ({ bmi }) => {
+  const { theme } = useTheme();
   if (!bmi) {
     return (
       <Card variant="bmi-empty" className="p-6">
         <div className="flex items-center gap-2 mb-4">
-          <Activity className="h-5 w-5 text-slate-500" />
-          <Label className="text-lg font-semibold text-slate-500">BMI Result</Label>
+          <Activity className={`h-5 w-5 ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`} />
+          <Label className={`text-lg font-semibold ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>BMI Result</Label>
         </div>
         <div className="text-center py-8">
-          <p className="text-slate-500">Enter your height and weight to calculate BMI</p>
+          <p className={`${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>Enter your height and weight to calculate BMI</p>
         </div>
       </Card>
     );
@@ -39,65 +41,41 @@ const BMIDisplay: React.FC<BMIDisplayProps> = ({ bmi }) => {
     }
   };
 
-  const getBadgeVariant = () => {
-    switch (color) {
-      case 'green':
-        return 'default';
-      case 'yellow':
-        return 'secondary';
-      case 'red':
-        return 'destructive';
-      default:
-        return 'default';
-    }
-  };
 
-  const getBadgeClassName = () => {
-    switch (color) {
-      case 'green':
-        return 'bg-green-100 text-green-800 hover:bg-green-200 border border-green-200';
-      case 'yellow':
-        return 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200 border border-yellow-200';
-      case 'red':
-        return 'bg-red-100 text-red-800 hover:bg-red-200 border border-red-200';
-      default:
-        return '';
-    }
-  };
 
   return (
     <Card variant="bmi" className="p-6">
       <div className="flex items-center gap-2 mb-4">
-        <Activity className="h-5 w-5 text-blue-600" />
-        <Label className="text-lg font-semibold text-slate-700">BMI Result</Label>
+        <Activity className={`h-5 w-5 ${theme === 'dark' ? 'text-sky-400' : 'text-sky-600'}`} />
+        <Label className={`text-lg font-semibold ${theme === 'dark' ? 'text-slate-200' : 'text-slate-700'}`}>BMI Result</Label>
       </div>
       
       <div className="text-center space-y-4">
         <div>
-          <div className="text-4xl font-bold text-blue-600 mb-2">
+          <div className={`text-4xl font-bold mb-2 ${theme === 'dark' ? 'text-sky-400' : 'text-sky-600'}`}>
             {bmi.toFixed(1)}
           </div>
           <Badge 
-            variant={getBadgeVariant()} 
-            className={`${getBadgeClassName()} px-3 py-1 text-sm font-medium flex items-center gap-2 w-fit mx-auto`}
+            variant={color as 'green' | 'yellow' | 'red' | 'default'} 
+            className="px-3 py-1 text-sm font-medium flex items-center gap-2 w-fit mx-auto"
           >
             {getIcon()}
             {category}
           </Badge>
         </div>
         
-        <div className="pt-4 border-t border-border/50">
+        <div className={`pt-4 border-t ${theme === 'dark' ? 'border-slate-600' : 'border-slate-200'}`}>
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div className="text-center">
-              <div className="font-medium text-slate-700">Normal Range</div>
-              <div className="text-slate-500">18.5 - 24.9</div>
+              <div className={`font-medium ${theme === 'dark' ? 'text-slate-200' : 'text-slate-700'}`}>Normal Range</div>
+              <div className={`${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>18.5 - 24.9</div>
             </div>
             <div className="text-center">
-              <div className="font-medium text-slate-700">Your BMI</div>
+              <div className={`font-medium ${theme === 'dark' ? 'text-slate-200' : 'text-slate-700'}`}>Your BMI</div>
               <div className={`font-semibold ${
-                color === 'green' ? 'text-green-600' : 
-                color === 'yellow' ? 'text-yellow-600' : 
-                'text-red-600'
+                color === 'green' ? (theme === 'dark' ? 'text-green-400' : 'text-green-600') : 
+                color === 'yellow' ? (theme === 'dark' ? 'text-yellow-400' : 'text-yellow-600') : 
+                (theme === 'dark' ? 'text-red-400' : 'text-red-600')
               }`}>
                 {bmi.toFixed(1)}
               </div>

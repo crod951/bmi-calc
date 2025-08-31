@@ -1,20 +1,31 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { useTheme } from "@/hooks/use-theme"
 
 interface CardProps extends React.ComponentProps<"div"> {
   variant?: 'default' | 'bmi' | 'bmi-empty'
 }
 
 function Card({ className, variant = 'default', ...props }: CardProps) {
+  const { theme } = useTheme();
+  
   const getVariantClasses = () => {
+    const isDark = theme === 'dark';
+    
     switch (variant) {
       case 'bmi':
-        return "bg-gradient-to-br from-white to-blue-50/20 border-0 shadow-md";
+        return isDark 
+          ? "bg-gradient-to-br from-slate-800 to-slate-700/50 border-0 shadow-md" 
+          : "bg-gradient-to-br from-white to-blue-50/20 border-0 shadow-md";
       case 'bmi-empty':
-        return "bg-gradient-to-br from-white to-slate-50/30 border-0 shadow-md";
+        return isDark 
+          ? "bg-gradient-to-br from-slate-800 to-slate-700/50 border-0 shadow-md" 
+          : "bg-gradient-to-br from-white to-slate-50/30 border-0 shadow-md";
       default:
-        return "bg-gradient-to-br from-white to-slate-50/50 border-0 shadow-md";
+        return isDark 
+          ? "bg-gradient-to-br from-slate-800 to-slate-700/50 border-0 shadow-md" 
+          : "bg-gradient-to-br from-white to-slate-50/50 border-0 shadow-md";
     }
   };
 

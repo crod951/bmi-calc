@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Weight, ToggleLeft, ToggleRight } from 'lucide-react';
 import { kgToLbs, lbsToKg } from '@/utils/conversions';
+import { useTheme } from '@/hooks/use-theme';
 
 interface WeightConverterProps {
   kilograms: string;
@@ -23,6 +24,7 @@ const WeightConverter: React.FC<WeightConverterProps> = ({
   onPoundsChange,
   onModeToggle,
 }) => {
+  const { theme } = useTheme();
   const handleMetricChange = (kgValue: string) => {
     onKilogramsChange(kgValue);
     
@@ -47,14 +49,13 @@ const WeightConverter: React.FC<WeightConverterProps> = ({
     <Card className="p-6">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <Weight className="h-5 w-5 text-blue-600" />
-          <Label className="text-lg font-semibold text-slate-700">Weight</Label>
+          <Weight className={`h-5 w-5 ${theme === 'dark' ? 'text-sky-400' : 'text-sky-600'}`} />
+          <Label className={`text-lg font-semibold ${theme === 'dark' ? 'text-slate-200' : 'text-slate-700'}`}>Weight</Label>
         </div>
         <Button
-          variant="ghost"
           size="sm"
           onClick={onModeToggle}
-          className="flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors"
+          className="flex items-center gap-2 transition-colors"
         >
           {weightMode === 'metric' ? (
             <>
@@ -72,7 +73,7 @@ const WeightConverter: React.FC<WeightConverterProps> = ({
 
       {weightMode === 'metric' ? (
         <div>
-          <Label htmlFor="kilograms" className="text-sm text-slate-500 mb-1 block">
+          <Label htmlFor="kilograms" className="mb-1 block">
             Kilograms
           </Label>
           <Input
@@ -89,7 +90,7 @@ const WeightConverter: React.FC<WeightConverterProps> = ({
         </div>
       ) : (
         <div>
-          <Label htmlFor="pounds" className="text-sm text-slate-500 mb-1 block">
+          <Label htmlFor="pounds" className="mb-1 block">
             Pounds
           </Label>
           <Input

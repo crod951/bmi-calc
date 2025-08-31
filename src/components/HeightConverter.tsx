@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Ruler, ToggleLeft, ToggleRight } from 'lucide-react';
 import { feetInchesToCm, cmToFeetInches } from '@/utils/conversions';
+import { useTheme } from '@/hooks/use-theme';
 
 interface HeightConverterProps {
   feet: string;
@@ -27,6 +28,7 @@ const HeightConverter: React.FC<HeightConverterProps> = ({
   onCentimetersChange,
   onModeToggle,
 }) => {
+  const { theme } = useTheme();
   const handleImperialChange = (feetValue: string, inchesValue: string) => {
     onFeetChange(feetValue);
     onInchesChange(inchesValue);
@@ -55,14 +57,13 @@ const HeightConverter: React.FC<HeightConverterProps> = ({
     <Card className="p-6">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <Ruler className="h-5 w-5 text-blue-600" />
-          <Label className="text-lg font-semibold text-slate-700">Height</Label>
+          <Ruler className={`h-5 w-5 ${theme === 'dark' ? 'text-sky-400' : 'text-sky-600'}`} />
+          <Label className={`text-lg font-semibold ${theme === 'dark' ? 'text-slate-200' : 'text-slate-700'}`}>Height</Label>
         </div>
         <Button
-          variant="ghost"
           size="sm"
           onClick={onModeToggle}
-          className="flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors"
+          className="flex items-center gap-2 transition-colors"
         >
           {heightMode === 'imperial' ? (
             <>
@@ -81,7 +82,7 @@ const HeightConverter: React.FC<HeightConverterProps> = ({
       {heightMode === 'imperial' ? (
         <div className="flex gap-3">
           <div className="flex-1">
-            <Label htmlFor="feet" className="text-sm text-slate-500 mb-1 block">
+            <Label htmlFor="feet" className="mb-1 block">
               Feet
             </Label>
             <Input
@@ -96,7 +97,7 @@ const HeightConverter: React.FC<HeightConverterProps> = ({
             />
           </div>
           <div className="flex-1">
-            <Label htmlFor="inches" className="text-sm text-slate-500 mb-1 block">
+            <Label htmlFor="inches" className="mb-1 block">
               Inches
             </Label>
             <Input
@@ -114,7 +115,7 @@ const HeightConverter: React.FC<HeightConverterProps> = ({
         </div>
       ) : (
         <div>
-          <Label htmlFor="centimeters" className="text-sm text-slate-500 mb-1 block">
+          <Label htmlFor="centimeters" className="mb-1 block">
             Centimeters
           </Label>
           <Input

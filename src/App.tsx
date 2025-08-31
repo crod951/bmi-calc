@@ -4,6 +4,8 @@ import HeightConverter from '@/components/HeightConverter';
 import WeightConverter from '@/components/WeightConverter';
 import BMIDisplay from '@/components/BMIDisplay';
 import { calculateBMI, isValidHeight, isValidWeight } from '@/utils/conversions';
+import { useTheme } from '@/hooks/use-theme';
+import { ModeToggle } from '@/components/mode-toggle';
 
 interface AppState {
   feet: string;
@@ -19,6 +21,7 @@ interface AppState {
 }
 
 const App = () => {
+  const { theme } = useTheme();
   const [state, setState] = useState<AppState>({
     feet: '',
     inches: '',
@@ -59,22 +62,34 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-50 to-blue-50/30">
+    <div className={`min-h-screen transition-colors duration-200 ${
+      theme === 'dark' 
+        ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900' 
+        : 'bg-gradient-to-br from-slate-50 via-slate-50 to-blue-50/30'
+    }`}>
       {/* Header */}
-      <header className="pt-8 pb-6">
+      <header className="pt-8 pb-6 relative">
         <div className="container mx-auto px-4">
+          {/* Theme Toggle - Top Right */}
+          <div className="absolute top-8 right-4 md:right-8">
+            <ModeToggle />
+          </div>
+
           <div className="text-center mb-8">
             <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="p-3 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl shadow-lg ring-1 ring-blue-500/20">
+              <div className="p-3 bg-gradient-to-br from-teal-200 to-sky-700 rounded-2xl shadow-lg ring-1 ring-blue-500/20">
                 <Calculator className="h-8 w-8 text-white" />
               </div>
-              <h1 className="text-4xl font-bold text-blue-600">
+              <h1 className={`text-4xl font-bold transition-colors duration-200 ${
+                theme === 'dark' ? 'text-sky-400' : 'text-sky-600'
+              }`}>
                 Health Calculator
               </h1>
             </div>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            <p className={`text-lg transition-colors duration-200 max-w-2xl mx-auto leading-relaxed ${
+              theme === 'dark' ? 'text-slate-300' : 'text-slate-500'
+            }`}>
               Convert between height and weight units with automatic BMI calculation. 
-              Get instant results and health category insights.
             </p>
           </div>
         </div>
@@ -114,7 +129,11 @@ const App = () => {
 
           {/* Footer Info */}
           <footer className="mt-12 text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100/80 rounded-full text-sm text-slate-600 border border-slate-200/50">
+            <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm border transition-colors duration-200 ${
+              theme === 'dark' 
+                ? 'bg-slate-800/80 text-slate-300 border-slate-600/50' 
+                : 'bg-slate-100/80 text-slate-600 border-slate-200/50'
+            }`}>
               <Heart className="h-4 w-4 text-red-500" />
               <span>BMI is a general indicator. Consult healthcare professionals for medical advice.</span>
             </div>
