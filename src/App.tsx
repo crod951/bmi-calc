@@ -67,10 +67,8 @@ const App = () => {
         ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900' 
         : 'bg-gradient-to-br from-slate-50 via-slate-50 to-blue-50/30'
     }`}>
-      {/* Header */}
       <header className="pt-8 pb-6 relative">
         <div className="container mx-auto px-4">
-          {/* Theme Toggle - Top Right */}
           <div className="absolute top-12 right-4 md:right-8 z-10">
             <ModeToggle />
           </div>
@@ -95,11 +93,9 @@ const App = () => {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="container mx-auto px-4 pb-12">
         <div className="max-w-4xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-6 mb-8">
-            {/* Height Converter */}
             <HeightConverter
               feet={state.feet}
               inches={state.inches}
@@ -111,7 +107,6 @@ const App = () => {
               onModeToggle={handleHeightModeToggle}
             />
 
-            {/* Weight Converter */}
             <WeightConverter
               kilograms={state.kilograms}
               pounds={state.pounds}
@@ -122,12 +117,10 @@ const App = () => {
             />
           </div>
 
-          {/* BMI Display */}
           <div className="max-w-md mx-auto">
             <BMIDisplay bmi={state.bmi} />
           </div>
 
-          {/* Footer Info */}
           <footer className="mt-12 text-center">
             <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm border transition-colors duration-200 ${
               theme === 'dark' 
