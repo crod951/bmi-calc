@@ -67,24 +67,24 @@ const App = () => {
         ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900' 
         : 'bg-gradient-to-br from-slate-50 via-slate-50 to-blue-50/30'
     }`}>
-      <header className="pt-8 pb-6 relative">
+      <header className="pt-4 pb-4 md:pt-8 md:pb-6 relative">
         <div className="container mx-auto px-4">
-          <div className="absolute top-12 right-4 md:right-8 z-10">
+          <div className="absolute top-6 right-4 md:top-12 md:right-8 z-10">
             <ModeToggle />
           </div>
 
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center gap-3 mb-6 flex-col sm:flex-row">
-              <div className="p-3 bg-gradient-to-br from-teal-200 to-sky-700 rounded-2xl shadow-lg ring-1 ring-blue-500/20">
-                <Calculator className="h-8 w-8 text-white" />
+          <div className="text-center mb-4 md:mb-8">
+            <div className="flex items-center justify-center gap-2 md:gap-3 mb-3 md:mb-6 flex-col sm:flex-row">
+              <div className="p-2 md:p-3 bg-gradient-to-br from-teal-200 to-sky-700 rounded-2xl shadow-lg ring-1 ring-blue-500/20">
+                <Calculator className="h-6 w-6 md:h-8 md:w-8 text-white" />
               </div>
-              <h1 className={`text-3xl sm:text-4xl font-bold transition-colors duration-200 ${
+              <h1 className={`text-2xl sm:text-3xl md:text-4xl font-bold transition-colors duration-200 ${
                 theme === 'dark' ? 'text-sky-400' : 'text-sky-600'
               }`}>
                 Health Calculator
               </h1>
             </div>
-            <p className={`text-lg transition-colors duration-200 max-w-2xl mx-auto leading-relaxed ${
+            <p className={`text-base md:text-lg transition-colors duration-200 max-w-2xl mx-auto leading-relaxed ${
               theme === 'dark' ? 'text-slate-300' : 'text-slate-500'
             }`}>
               Convert between height and weight units with automatic BMI calculation. 
@@ -93,9 +93,9 @@ const App = () => {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 pb-12">
+      <main className="container mx-auto px-4 pb-6 md:pb-12">
         <div className="max-w-4xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-6 mb-8">
+          <div className="grid lg:grid-cols-2 gap-3 md:gap-6 mb-4 md:mb-8">
             <HeightConverter
               feet={state.feet}
               inches={state.inches}
@@ -121,13 +121,13 @@ const App = () => {
             <BMIDisplay bmi={state.bmi} />
           </div>
 
-          <footer className="mt-12 text-center">
-            <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm border transition-colors duration-200 ${
+          <footer className="mt-6 md:mt-12 text-center">
+            <div className={`inline-flex items-center gap-2 px-3 md:px-4 py-2 rounded-full text-xs md:text-sm border transition-colors duration-200 ${
               theme === 'dark' 
                 ? 'bg-slate-800/80 text-slate-300 border-slate-600/50' 
                 : 'bg-slate-100/80 text-slate-600 border-slate-200/50'
             }`}>
-              <Heart className="h-4 w-4 text-red-500" />
+              <Heart className="h-3 w-3 md:h-4 md:w-4 text-red-500" />
               <span>BMI is a general indicator. Consult healthcare professionals for medical advice.</span>
             </div>
           </footer>
