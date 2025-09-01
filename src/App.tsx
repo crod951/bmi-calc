@@ -32,6 +32,9 @@ const App = () => {
     weightMode: 'metric',
     bmi: null,
   });
+  
+  const [calculatorClicks, setCalculatorClicks] = useState(0);
+  const [showAvaImage, setShowAvaImage] = useState(false);
 
   useEffect(() => {
     const heightCm = parseFloat(state.centimeters);
@@ -61,6 +64,16 @@ const App = () => {
     }));
   };
 
+  const handleCalculatorClick = () => {
+    const newClickCount = calculatorClicks + 1;
+    setCalculatorClicks(newClickCount);
+    
+    if (newClickCount >= 3) {
+      setShowAvaImage(true);
+      setCalculatorClicks(0);
+    }
+  };
+
   return (
     <div className={`min-h-screen transition-colors duration-200 ${
       theme === 'dark' 
@@ -74,21 +87,34 @@ const App = () => {
           </div>
 
           <div className="text-center mb-4 md:mb-8">
-            <div className="flex items-center justify-center gap-2 md:gap-3 mb-3 md:mb-6 flex-col sm:flex-row">
-              <div className="p-2 md:p-3 bg-gradient-to-br from-teal-200 to-sky-700 rounded-2xl shadow-lg ring-1 ring-blue-500/20">
-                <Calculator className="h-6 w-6 md:h-8 md:w-8 text-white" />
+            {!showAvaImage ? (
+              <div className="flex items-center justify-center gap-2 md:gap-3 mb-3 md:mb-6 flex-col sm:flex-row">
+                <div 
+                  className="p-2 md:p-3 bg-gradient-to-br from-teal-200 to-sky-700 rounded-2xl shadow-lg ring-1 ring-blue-500/20 cursor-pointer hover:scale-105 transition-transform duration-200"
+                  onClick={handleCalculatorClick}
+                >
+                  <Calculator className="h-6 w-6 md:h-8 md:w-8 text-white" />
+                </div>
+                <h1 className={`text-2xl sm:text-3xl md:text-4xl font-bold transition-colors duration-200 ${
+                  theme === 'dark' ? 'text-sky-400' : 'text-sky-600'
+                }`}>
+                  Health Calculator
+                </h1>
+                <p className={`text-base md:text-lg transition-colors duration-200 max-w-2xl mx-auto leading-relaxed ${
+                  theme === 'dark' ? 'text-slate-300' : 'text-slate-500'
+                }`}>
+                  Convert between height and weight units with automatic BMI calculation. 
+                </p>
               </div>
-              <h1 className={`text-2xl sm:text-3xl md:text-4xl font-bold transition-colors duration-200 ${
-                theme === 'dark' ? 'text-sky-400' : 'text-sky-600'
-              }`}>
-                Health Calculator
-              </h1>
-            </div>
-            <p className={`text-base md:text-lg transition-colors duration-200 max-w-2xl mx-auto leading-relaxed ${
-              theme === 'dark' ? 'text-slate-300' : 'text-slate-500'
-            }`}>
-              Convert between height and weight units with automatic BMI calculation. 
-            </p>
+            ) : (
+              <div className="flex items-center justify-center mb-3 md:mb-6">
+                <img 
+                  src="/ava.jpg" 
+                  alt="Our dog Ava" 
+                  className="h-32 w-32 md:h-40 md:w-40 rounded-full object-cover shadow-lg animate-wiggle"
+                />
+              </div>
+            )}
           </div>
         </div>
       </header>
