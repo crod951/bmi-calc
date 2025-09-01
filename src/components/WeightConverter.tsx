@@ -46,8 +46,8 @@ const WeightConverter: React.FC<WeightConverterProps> = ({
   };
 
   return (
-    <Card className="p-6">
-      <div className="flex items-center justify-between mb-4">
+    <Card className="px-6 py-4 md:p-6">
+      <div className="flex items-center justify-between mb-1 md:mb-4">
         <div className="flex items-center gap-2">
           <Weight className={`h-5 w-5 ${theme === 'dark' ? 'text-sky-400' : 'text-sky-600'}`} />
           <Label className={`text-lg font-semibold ${theme === 'dark' ? 'text-slate-200' : 'text-slate-700'}`}>Weight</Label>
@@ -86,6 +86,7 @@ const WeightConverter: React.FC<WeightConverterProps> = ({
             max="300"
             step="0.1"
             className="text-center text-lg font-medium"
+            tabIndex={3}
           />
         </div>
       ) : (
@@ -103,6 +104,7 @@ const WeightConverter: React.FC<WeightConverterProps> = ({
             max="660"
             step="0.1"
             className="text-center text-lg font-medium"
+            tabIndex={3}
           />
         </div>
       )}

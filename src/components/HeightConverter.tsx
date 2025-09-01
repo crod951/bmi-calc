@@ -54,8 +54,8 @@ const HeightConverter: React.FC<HeightConverterProps> = ({
   };
 
   return (
-    <Card className="p-6">
-      <div className="flex items-center justify-between mb-4">
+    <Card className="px-6 py-4 md:p-6">
+      <div className="flex items-center justify-between mb-1 md:mb-4">
         <div className="flex items-center gap-2">
           <Ruler className={`h-5 w-5 ${theme === 'dark' ? 'text-sky-400' : 'text-sky-600'}`} />
           <Label className={`text-lg font-semibold ${theme === 'dark' ? 'text-slate-200' : 'text-slate-700'}`}>Height</Label>
@@ -94,6 +94,7 @@ const HeightConverter: React.FC<HeightConverterProps> = ({
               min="2"
               max="9"
               className="text-center text-lg font-medium"
+              tabIndex={1}
             />
           </div>
           <div className="flex-1">
@@ -110,6 +111,7 @@ const HeightConverter: React.FC<HeightConverterProps> = ({
               max="11"
               step="0.1"
               className="text-center text-lg font-medium"
+              tabIndex={2}
             />
           </div>
         </div>
@@ -128,6 +130,7 @@ const HeightConverter: React.FC<HeightConverterProps> = ({
             max="300"
             step="0.1"
             className="text-center text-lg font-medium"
+            tabIndex={1}
           />
         </div>
       )}

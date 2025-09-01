@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Calculator, Heart } from 'lucide-react';
+import { Calculator, Code } from 'lucide-react';
 import HeightConverter from '@/components/HeightConverter';
 import WeightConverter from '@/components/WeightConverter';
 import BMIDisplay from '@/components/BMIDisplay';
@@ -80,26 +80,28 @@ const App = () => {
         ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900' 
         : 'bg-gradient-to-br from-slate-50 via-slate-50 to-blue-50/30'
     }`}>
-      <header className="pt-4 pb-4 md:pt-8 md:pb-6 relative">
+      <header className="pt-4 pb-2 md:pt-8 md:pb-6 relative">
         <div className="container mx-auto px-4">
           <div className="absolute top-6 right-4 md:top-12 md:right-8 z-10">
             <ModeToggle />
           </div>
 
-          <div className="text-center mb-4 md:mb-8">
+          <div className="text-center mb-1 md:mb-8">
             {!showAvaImage ? (
-              <div className="flex items-center justify-center gap-2 md:gap-3 mb-3 md:mb-6 flex-col sm:flex-row">
-                <div 
-                  className="p-2 md:p-3 bg-gradient-to-br from-teal-200 to-sky-700 rounded-2xl shadow-lg ring-1 ring-blue-500/20 cursor-pointer hover:scale-105 transition-transform duration-200"
-                  onClick={handleCalculatorClick}
-                >
-                  <Calculator className="h-6 w-6 md:h-8 md:w-8 text-white" />
+              <div className="flex flex-col items-center justify-center gap-2 md:gap-3 mb-3 md:mb-6">
+                <div className="flex items-center justify-center gap-2 md:gap-3 flex-col sm:flex-row">
+                  <div 
+                    className="p-2 md:p-3 bg-gradient-to-br from-teal-200 to-sky-700 rounded-2xl shadow-lg ring-1 ring-blue-500/20 cursor-pointer hover:scale-105 transition-transform duration-200"
+                    onClick={handleCalculatorClick}
+                  >
+                    <Calculator className="h-6 w-6 md:h-8 md:w-8 text-white" />
+                  </div>
+                  <h1 className={`text-2xl sm:text-3xl md:text-4xl font-bold transition-colors duration-200 ${
+                    theme === 'dark' ? 'text-sky-400' : 'text-sky-600'
+                  }`}>
+                    Health Calculator
+                  </h1>
                 </div>
-                <h1 className={`text-2xl sm:text-3xl md:text-4xl font-bold transition-colors duration-200 ${
-                  theme === 'dark' ? 'text-sky-400' : 'text-sky-600'
-                }`}>
-                  Health Calculator
-                </h1>
                 <p className={`text-base md:text-lg transition-colors duration-200 max-w-2xl mx-auto leading-relaxed ${
                   theme === 'dark' ? 'text-slate-300' : 'text-slate-500'
                 }`}>
@@ -121,7 +123,7 @@ const App = () => {
 
       <main className="container mx-auto px-4 pb-6 md:pb-12">
         <div className="max-w-4xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-3 md:gap-6 mb-4 md:mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 md:gap-6 mb-2 md:mb-8">
             <HeightConverter
               feet={state.feet}
               inches={state.inches}
@@ -153,8 +155,8 @@ const App = () => {
                 ? 'bg-slate-800/80 text-slate-300 border-slate-600/50' 
                 : 'bg-slate-100/80 text-slate-600 border-slate-200/50'
             }`}>
-              <Heart className="h-3 w-3 md:h-4 md:w-4 text-red-500" />
-              <span>BMI is a general indicator. Consult healthcare professionals for medical advice.</span>
+            <Code className="h-3 w-3 md:h-4 md:w-4 text-green-500" />
+            <span>Created by Christopher Rodrigues</span>
             </div>
           </footer>
         </div>
